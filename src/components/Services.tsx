@@ -134,9 +134,9 @@ const Services = () => {
               <button onClick={scrollToHero} className="bg-[#2A2A86] text-white px-8 py-3 rounded-full hover:bg-[#2A2A86] transition-all duration-300 transform hover:scale-105 font-semibold">
                 Get Free Quote
               </button>
-              <button className="border border-[#2A2A86] text-[#2A2A86] px-8 py-3 rounded-full hover:bg-[#2A2A86] hover:text-white transition-all duration-300 font-semibold">
+              <a href="tel:+919056544487" className="border border-[#2A2A86] text-[#2A2A86] px-8 py-3 rounded-full hover:bg-[#2A2A86] hover:text-white transition-all duration-300 font-semibold text-center">
                 Call Now
-              </button>
+              </a>
             </div>
           </div>
         </div>

@@ -256,7 +256,7 @@ const Hero = () => {
           <div className="fixed bottom-8 right-8 flex flex-col gap-4 z-50">
             {/* Call Icon */}
             <a
-              href="tel:9056544487"
+              href="tel:+919056544487"
               className="bg-red-600 hover:bg-red-700 text-white rounded-[10px]  shadow-lg p-3 flex items-center justify-center transition-transform duration-200 hover:scale-110 block md:hidden"
               aria-label="Call Eurocert"
               target="_blank"
@@ -266,7 +266,7 @@ const Hero = () => {
             </a>
             {/* WhatsApp Icon */}
             <a
-              href="https://wa.me/9056544487"
+              href="https://wa.me/919056544487"
               className="bg-[#25D366] hover:bg-[#1ebe57] text-white rounded-full shadow-lg p-3 flex items-center justify-center transition-transform duration-200 hover:scale-110"
               aria-label="WhatsApp Eurocert"
               target="_blank"

@@ -177,9 +177,9 @@ const Process = () => {
                 <span>Get Free Quote</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
-              <button className="border border-[#2A2A86] text-[#2A2A86] px-8 py-3 rounded-full hover:bg-[#2A2A86] hover:text-white transition-all duration-300 font-semibold">
+              <a href="tel:+919056544487" className="border border-[#2A2A86] text-[#2A2A86] px-8 py-3 rounded-full hover:bg-[#2A2A86] hover:text-white transition-all duration-300 font-semibold text-center">
                 Call Now
-              </button>
+              </a>
             </div>
           </div>
         </div>
