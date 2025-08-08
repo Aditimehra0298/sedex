@@ -151,7 +151,7 @@ const Hero = () => {
                   Thank you for contacting us. We'll get back to you within 1 hour.
                 </p>
                 <p className="text-sm text-blue-600">
-                  Data saved to Google Sheets successfully.
+                  Data saved to Google Sheets & email notification sent to our team.
                 </p>
               </div>
             ) : (
