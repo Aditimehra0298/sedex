@@ -6,7 +6,7 @@ const Testimonials = () => {
 
   const testimonials = [
     {
-      name: "Rajesh Kumar",
+      name: "Priya sharma",
       position: "Quality Manager",
       company: "Textile Exporter, Tirupur",
       content: "Smooth & professional experience. We got SMETA certified within 8 days thanks to Eurocert's team. The pre-audit guidance was excellent and helped us prepare thoroughly.",
@@ -14,7 +14,7 @@ const Testimonials = () => {
       image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     },
     {
-      name: "Priya Sharma",
+      name: "Rajesh Kumar",
       position: "Export Manager",
       company: "Food & Agri Exporter, Mumbai",
       content: "Eurocert's SEDEX SMETA certification process was seamless. Their experienced auditors helped us meet all requirements for supplying to major UK retailers. Highly recommended!",
@@ -22,7 +22,7 @@ const Testimonials = () => {
       image: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     },
     {
-      name: "Amit Patel",
+      name: "Anjali Sharma",
       position: "Operations Director",
       company: "Packaging Manufacturer, Ahmedabad",
       content: "The team at Eurocert made our SEDEX SMETA certification journey stress-free. Their fast-track process got us certified in just 7 days, helping us meet urgent buyer requirements.",
@@ -30,7 +30,7 @@ const Testimonials = () => {
       image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     },
     {
-      name: "Sunita Reddy",
+      name: "Karna Reddy",
       position: "Compliance Officer",
       company: "Chemical Manufacturer, Hyderabad",
       content: "Eurocert's expertise in SEDEX SMETA audits is outstanding. Their affordable pricing and professional approach helped us achieve certification without breaking the bank.",
