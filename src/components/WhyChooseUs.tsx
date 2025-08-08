@@ -1,7 +1,19 @@
 import React from 'react';
-import { Shield, Clock, Users, CheckCircle, Star, Zap, Target, FileCheck } from 'lucide-react';
+import { Shield, Clock, Users, CheckCircle, Star, Zap, Target, FileCheck, ArrowRight } from 'lucide-react';
 
 const WhyChooseUs = () => {
+  const scrollToHero = () => {
+    const element = document.getElementById('home');
+    if (element) {
+      const headerHeight = 80;
+      const elementPosition = element.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const features = [
     {
       icon: Shield,
@@ -140,6 +152,27 @@ const WhyChooseUs = () => {
                   <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
                   <span className="text-gray-700">Demonstrate commitment to ethical business practices</span>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center mt-16">
+            <div className="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                🚀 Ready to Start Your SEDEX SMETA Certification?
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Get a Free Quote or Call Back Within 1 Hour. Limited slots available this month.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onClick={scrollToHero} className="bg-[#2A2A86] text-white px-8 py-3 rounded-full hover:bg-[#2A2A86] transition-all duration-300 transform hover:scale-105 font-semibold flex items-center justify-center space-x-2">
+                  <span>Get Free Quote</span>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+                <button className="border border-[#2A2A86] text-[#2A2A86] px-8 py-3 rounded-full hover:bg-[#2A2A86] hover:text-white transition-all duration-300 font-semibold">
+                  Call Now
+                </button>
               </div>
             </div>
           </div>

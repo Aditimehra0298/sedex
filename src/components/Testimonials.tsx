@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, Quote, ArrowRight } from 'lucide-react';
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const scrollToHero = () => {
+    const element = document.getElementById('home');
+    if (element) {
+      const headerHeight = 80;
+      const elementPosition = element.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const testimonials = [
     {
@@ -152,8 +164,9 @@ const Testimonials = () => {
             <p className="text-gray-600 mb-6">
               Join hundreds of satisfied clients who have achieved SEDEX SMETA certification with Eurocert.
             </p>
-            <button className="bg-[#2A2A86] text-white px-8 py-3 rounded-full hover:bg-[#2A2A86] transition-all duration-300 transform hover:scale-105 font-semibold">
-              Get Free Quote Now
+            <button onClick={scrollToHero} className="bg-[#2A2A86] text-white px-8 py-3 rounded-full hover:bg-[#2A2A86] transition-all duration-300 transform hover:scale-105 font-semibold flex items-center justify-center space-x-2">
+              <span>Get Free Quote Now</span>
+              <ArrowRight className="w-5 h-5" />
             </button>
           </div>
         </div>

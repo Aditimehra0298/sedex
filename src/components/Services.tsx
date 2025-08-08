@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
-import { Shield, Award, FileCheck, Leaf, Users, Zap, Utensils, Building, BarChart3, Globe, CheckCircle, Eye, Footprints, Handshake, AlertTriangle, Recycle, BadgeCheck, GraduationCap, Clock, Star, Target } from 'lucide-react';
+import { Shield, Award, FileCheck, Leaf, Users, Zap, Utensils, Building, BarChart3, Globe, CheckCircle, Eye, Footprints, Handshake, AlertTriangle, Recycle, BadgeCheck, GraduationCap, Clock, Star, Target, ArrowRight } from 'lucide-react';
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState('smeta'); // Set 'smeta' as default
+
+  const scrollToHero = () => {
+    const element = document.getElementById('home');
+    if (element) {
+      const headerHeight = 80;
+      const elementPosition = element.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const smetaServices = [
     {
@@ -119,7 +131,7 @@ const Services = () => {
               Get a Free Quote or Call Back Within 1 Hour. Limited slots available this month.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-[#2A2A86] text-white px-8 py-3 rounded-full hover:bg-[#2A2A86] transition-all duration-300 transform hover:scale-105 font-semibold">
+              <button onClick={scrollToHero} className="bg-[#2A2A86] text-white px-8 py-3 rounded-full hover:bg-[#2A2A86] transition-all duration-300 transform hover:scale-105 font-semibold">
                 Get Free Quote
               </button>
               <button className="border border-[#2A2A86] text-[#2A2A86] px-8 py-3 rounded-full hover:bg-[#2A2A86] hover:text-white transition-all duration-300 font-semibold">
