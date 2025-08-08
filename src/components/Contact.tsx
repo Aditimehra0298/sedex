@@ -76,8 +76,13 @@ const Contact = () => {
       form.submit();
       document.body.removeChild(form);
 
-      // Also send email as backup
-      const emailBody = `
+      // Show success message first
+      setIsSubmitted(true);
+      setIsSubmitting(false);
+
+      // Send email after a short delay
+      setTimeout(() => {
+        const emailBody = `
 New SEDEX SMETA Certification Inquiry
 
 Name: ${formData.name}
@@ -89,34 +94,24 @@ Message: ${formData.message}
 
 Submitted at: ${new Date().toLocaleString()}
 Website: Eurocert SEDEX SMETA Landing Page
-      `;
+        `;
 
-      // Create mailto link
-      const mailtoLink = `mailto:damnart.seo@gmail.com?subject=SEDEX SMETA Inquiry from ${formData.name}&body=${encodeURIComponent(emailBody)}`;
-      
-      // Open email client as backup
-      setTimeout(() => {
+        const mailtoLink = `mailto:damnart.seo@gmail.com?subject=SEDEX SMETA Inquiry from ${formData.name}&body=${encodeURIComponent(emailBody)}`;
         window.open(mailtoLink, '_blank');
-      }, 500);
-
-      // Show success message
-      setTimeout(() => {
-        setIsSubmitted(true);
-        setIsSubmitting(false);
-        
-        // Reset form after 3 seconds
-        setTimeout(() => {
-          setIsSubmitted(false);
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            city: '',
-            service: '',
-            message: ''
-          });
-        }, 3000);
       }, 1000);
+
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          city: '',
+          service: '',
+          message: ''
+        });
+      }, 5000);
 
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -230,12 +225,15 @@ Website: Eurocert SEDEX SMETA Landing Page
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
                 </div>
-                <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Message Sent Successfully!</h4>
-                <p className="text-gray-600 text-sm sm:text-base">
+                <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Thank You! Message Sent Successfully!</h4>
+                <p className="text-gray-600 text-sm sm:text-base mb-4">
                   Thank you for contacting us. We'll get back to you within 1 hour.
                 </p>
-                <p className="text-sm text-blue-600 mt-2">
+                <p className="text-sm text-blue-600">
                   Data saved to Google Sheets & email sent to our team.
+                </p>
+                <p className="text-xs text-gray-500 mt-2">
+                  Your email client will open shortly with a pre-filled message.
                 </p>
               </div>
             ) : (
