@@ -26,10 +26,10 @@ const Hero = () => {
     setIsSubmitting(true);
 
     try {
-      // Try to save to Google Sheets
+      // Create hidden form for Google Apps Script submission
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = 'https://script.google.com/macros/s/AKfycbyoX4DKwZTC5Xtt3LdhGvXITklHcw66_32JZTPEQX67zmLsjbX5d6m1ysq1mePi4Z9w/exec';
+      form.action = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; // Replace with your actual URL
       form.target = 'hidden-iframe';
       form.style.display = 'none';
 
@@ -114,10 +114,10 @@ const Hero = () => {
                 Trusted Since 1998
               </div>
               <h1 className="text-2xl sm:text-4xl  lg:text-6xl font-bold text-[white] leading-tight text-center ">
-                Get SEDEX SMETA Certification Fast — Trusted by Leading Brands
+                Get SEDEX SMETA Certification Fast — Trusted 
               </h1>
               <div className="bg-white/80 rounded-xl p-4 shadow-sm space-y-2">
-                <p className="text-[#2a2a86] sm-text-center  block  text-center font-semibold">Eurocert India | 100% Certification Support | Accredited Auditors</p>
+                <p className="text-[#2a2a86] sm-text-center  block  text-center font-semibold">Eurocert | 100% Certification Support | Accredited Auditors</p>
                 <p className="text-base sm:text-lg sm-text-left text-gray-700 font-[400] text-center "> 
                   With more than 25 years of global expertise and a footprint in over 45 countries, Eurocert has successfully served 6,000+ clients. Looking to partner with global brands? Obtain your SEDEX SMETA (4-Pillar or 2-Pillar) audit and certification seamlessly with Eurocert—your trusted partner in world-class certification.
                 </p>

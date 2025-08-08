@@ -45,10 +45,10 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Try to save to Google Sheets
+      // Create hidden form for Google Apps Script submission
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = 'https://script.google.com/macros/s/AKfycbyoX4DKwZTC5Xtt3LdhGvXITklHcw66_32JZTPEQX67zmLsjbX5d6m1ysq1mePi4Z9w/exec';
+      form.action = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; // Replace with your actual URL
       form.target = 'hidden-iframe-contact';
       form.style.display = 'none';
 
