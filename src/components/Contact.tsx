@@ -45,38 +45,28 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Create a hidden form to submit data (bypasses CORS)
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = 'https://script.google.com/macros/s/AKfycbyoX4DKwZTC5Xtt3LdhGvXITklHcw66_32JZTPEQX67zmLsjbX5d6m1ysq1mePi4Z9w/exec';
-      form.target = 'hidden-iframe-contact';
-      form.style.display = 'none';
+      // Create email body with form data
+      const emailBody = `
+New SEDEX SMETA Certification Inquiry
 
-      // Add form data as hidden inputs
-      Object.entries(formData).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      });
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+City: ${formData.city}
+Service: ${formData.service}
+Message: ${formData.message}
 
-      // Create hidden iframe to receive response
-      let iframe = document.getElementById('hidden-iframe-contact') as HTMLIFrameElement;
-      if (!iframe) {
-        iframe = document.createElement('iframe');
-        iframe.id = 'hidden-iframe-contact';
-        iframe.name = 'hidden-iframe-contact';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-      }
+Submitted at: ${new Date().toLocaleString()}
+Website: Eurocert SEDEX SMETA Landing Page
+      `;
 
-      // Add form to page and submit
-      document.body.appendChild(form);
-      form.submit();
-      document.body.removeChild(form);
+      // Create mailto link
+      const mailtoLink = `mailto:damnart.seo@gmail.com?subject=SEDEX SMETA Inquiry from ${formData.name}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Open email client
+      window.open(mailtoLink, '_blank');
 
-      // Simulate success (since we can't easily get response from iframe)
+      // Show success message
       setTimeout(() => {
         setIsSubmitted(true);
         setIsSubmitting(false);
@@ -211,6 +201,9 @@ const Contact = () => {
                 <p className="text-gray-600 text-sm sm:text-base">
                   Thank you for contacting us. We'll get back to you within 1 hour.
                 </p>
+                <p className="text-sm text-blue-600 mt-2">
+                  Your email client should have opened with a pre-filled message. Please send the email to complete your inquiry.
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-6">
@@ -300,7 +293,7 @@ const Contact = () => {
                   className="w-full bg-[#2a2a86] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl hover:bg-[#2a2a86] transition-all duration-300 transform hover:scale-105 font-semibold flex items-center justify-center space-x-2 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="w-5 h-5" />
-                  <span>{isSubmitting ? 'Submitting...' : 'Get Free Quote'}</span>
+                  <span>{isSubmitting ? 'Opening Email...' : 'Get Free Quote'}</span>
                 </button>
               </form>
             )}
