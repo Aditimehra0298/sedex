@@ -26,7 +26,7 @@ const Hero = () => {
     setIsSubmitting(true);
 
     try {
-      // Try to save to Google Sheets first
+      // Try to save to Google Sheets
       const form = document.createElement('form');
       form.method = 'POST';
       form.action = 'https://script.google.com/macros/s/AKfycbyoX4DKwZTC5Xtt3LdhGvXITklHcw66_32JZTPEQX67zmLsjbX5d6m1ysq1mePi4Z9w/exec';
@@ -57,29 +57,9 @@ const Hero = () => {
       form.submit();
       document.body.removeChild(form);
 
-      // Show success message first
+      // Show success message
       setIsSubmitted(true);
       setIsSubmitting(false);
-
-      // Send email after a short delay
-      setTimeout(() => {
-        const emailBody = `
-New SEDEX SMETA Certification Inquiry
-
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-City: ${formData.city}
-Service: ${formData.service}
-Message: ${formData.message}
-
-Submitted at: ${new Date().toLocaleString()}
-Website: Eurocert SEDEX SMETA Landing Page
-        `;
-
-        const mailtoLink = `mailto:damnart.seo@gmail.com?subject=SEDEX SMETA Inquiry from ${formData.name}&body=${encodeURIComponent(emailBody)}`;
-        window.open(mailtoLink, '_blank');
-      }, 1000);
 
       // Reset form after 5 seconds
       setTimeout(() => {
@@ -171,10 +151,7 @@ Website: Eurocert SEDEX SMETA Landing Page
                   Thank you for contacting us. We'll get back to you within 1 hour.
                 </p>
                 <p className="text-sm text-blue-600">
-                  Data saved to Google Sheets & email sent to our team.
-                </p>
-                <p className="text-xs text-gray-500 mt-2">
-                  Your email client will open shortly with a pre-filled message.
+                  Data saved to Google Sheets successfully.
                 </p>
               </div>
             ) : (
