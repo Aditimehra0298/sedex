@@ -26,7 +26,7 @@ const Hero = () => {
     setIsSubmitting(true);
 
     try {
-      // Create a hidden form to submit data (bypasses CORS)
+      // Try Google Apps Script first
       const form = document.createElement('form');
       form.method = 'POST';
       form.action = 'https://script.google.com/macros/s/AKfycbyoX4DKwZTC5Xtt3LdhGvXITklHcw66_32JZTPEQX67zmLsjbX5d6m1ysq1mePi4Z9w/exec';
@@ -57,7 +57,29 @@ const Hero = () => {
       form.submit();
       document.body.removeChild(form);
 
-      // Simulate success (since we can't easily get response from iframe)
+      // Also send email as fallback
+      const emailBody = `
+New SEDEX SMETA Certification Inquiry
+
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+City: ${formData.city}
+Service: ${formData.service}
+Message: ${formData.message}
+
+Submitted at: ${new Date().toLocaleString()}
+      `;
+
+      // Create mailto link as fallback
+      const mailtoLink = `mailto:damnart.seo@gmail.com?subject=SEDEX SMETA Inquiry from ${formData.name}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Open email client as backup
+      setTimeout(() => {
+        window.open(mailtoLink, '_blank');
+      }, 500);
+
+      // Simulate success
       setTimeout(() => {
         setIsSubmitted(true);
         setIsSubmitting(false);
