@@ -6,10 +6,11 @@ type FeatureIcon = React.ElementType | string;
 const WhyChooseUs = () => {
   const features = [
     {
-       src:'/img/amul.png', 
-      title: "Amul",
-      description: "Amul is India’s largest dairy cooperative brand, known for revolutionizing the dairy industry with its wide range of milk, butter, cheese, and other dairy products. It symbolizes the White Revolution in India.",
-      color: "blue"
+      src:'/img/20250808_1259_Textile Factory Craftsmanship_simple_compose_01k249b07resj9evksj950cw1d.mp4',
+      title: "Textile Factory Craftsmanship",
+      description: "Showcasing the intricate craftsmanship and quality processes in textile manufacturing. This video highlights the dedication to excellence and attention to detail that goes into every product.",
+      color: "blue",
+      isVideo: true
     },
     {
       src:'/img/sun.png',
