@@ -3,8 +3,8 @@
 
 function doPost(e) {
   try {
-    // Parse the incoming data
-    const data = JSON.parse(e.postData.contents);
+    // Parse the incoming form data
+    const formData = e.parameter;
     
     // Get the active spreadsheet (replace with your actual spreadsheet ID)
     const spreadsheet = SpreadsheetApp.openById('YOUR_SPREADSHEET_ID_HERE');
@@ -14,31 +14,47 @@ function doPost(e) {
     const timestamp = new Date();
     const rowData = [
       timestamp,
-      data.name || '',
-      data.email || '',
-      data.phone || '',
-      data.city || '',
-      data.service || '',
-      data.message || ''
+      formData.name || '',
+      formData.email || '',
+      formData.phone || '',
+      formData.city || '',
+      formData.service || '',
+      formData.message || ''
     ];
     
     // Append the data to the sheet
     sheet.appendRow(rowData);
     
     // Send email notification
-    sendEmailNotification(data);
+    sendEmailNotification(formData);
     
-    // Return success response
+    // Return success response with CORS headers
     return ContentService
-      .createTextOutput(JSON.stringify({ success: true, message: 'Form submitted successfully' }))
-      .setMimeType(ContentService.MimeType.JSON);
+      .createTextOutput('Form submitted successfully!')
+      .setMimeType(ContentService.MimeType.TEXT)
+      .setHeader('Access-Control-Allow-Origin', '*')
+      .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+      .setHeader('Access-Control-Allow-Headers', 'Content-Type');
       
   } catch (error) {
-    // Return error response
+    // Return error response with CORS headers
     return ContentService
-      .createTextOutput(JSON.stringify({ success: false, message: 'Error processing form submission' }))
-      .setMimeType(ContentService.MimeType.JSON);
+      .createTextOutput('Error processing form submission')
+      .setMimeType(ContentService.MimeType.TEXT)
+      .setHeader('Access-Control-Allow-Origin', '*')
+      .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+      .setHeader('Access-Control-Allow-Headers', 'Content-Type');
   }
+}
+
+// Handle OPTIONS requests for CORS preflight
+function doOptions(e) {
+  return ContentService
+    .createTextOutput('')
+    .setHeader('Access-Control-Allow-Origin', '*')
+    .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+    .setHeader('Access-Control-Max-Age', '86400');
 }
 
 function sendEmailNotification(formData) {

@@ -26,21 +26,42 @@ const Hero = () => {
     setIsSubmitting(true);
 
     try {
-      // Google Apps Script web app URL
-      const scriptUrl = 'https://script.google.com/macros/s/AKfycbyoX4DKwZTC5Xtt3LdhGvXITklHcw66_32JZTPEQX67zmLsjbX5d6m1ysq1mePi4Z9w/exec';
-      
-      const response = await fetch(scriptUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
+      // Create a hidden form to submit data (bypasses CORS)
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://script.google.com/macros/s/AKfycbyoX4DKwZTC5Xtt3LdhGvXITklHcw66_32JZTPEQX67zmLsjbX5d6m1ysq1mePi4Z9w/exec';
+      form.target = 'hidden-iframe';
+      form.style.display = 'none';
+
+      // Add form data as hidden inputs
+      Object.entries(formData).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
       });
 
-      const result = await response.json();
+      // Create hidden iframe to receive response
+      let iframe = document.getElementById('hidden-iframe') as HTMLIFrameElement;
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.id = 'hidden-iframe';
+        iframe.name = 'hidden-iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+      }
 
-      if (result.success) {
+      // Add form to page and submit
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+
+      // Simulate success (since we can't easily get response from iframe)
+      setTimeout(() => {
         setIsSubmitted(true);
+        setIsSubmitting(false);
+        
         // Reset form after 3 seconds
         setTimeout(() => {
           setIsSubmitted(false);
@@ -53,13 +74,11 @@ const Hero = () => {
             message: ''
           });
         }, 3000);
-      } else {
-        alert('Error submitting form. Please try again.');
-      }
+      }, 1000);
+
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Error submitting form. Please try again.');
-    } finally {
       setIsSubmitting(false);
     }
   };
