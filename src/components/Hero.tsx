@@ -26,8 +26,8 @@ const Hero = () => {
     setIsSubmitting(true);
 
     try {
-      // Replace this URL with your Google Apps Script web app URL
-      const scriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+      // Google Apps Script web app URL
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbyoX4DKwZTC5Xtt3LdhGvXITklHcw66_32JZTPEQX67zmLsjbX5d6m1ysq1mePi4Z9w/exec';
       
       const response = await fetch(scriptUrl, {
         method: 'POST',
