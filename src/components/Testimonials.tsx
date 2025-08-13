@@ -5,15 +5,102 @@ const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const scrollToHero = () => {
-    const element = document.getElementById('home');
-    if (element) {
-      const headerHeight = 80;
-      const elementPosition = element.offsetTop - headerHeight;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
-    }
+    // Add a small delay to prevent conflicts with carousel auto-scroll
+    setTimeout(() => {
+      // Try to scroll to contact form first, then fallback to home
+      const contactForm = document.getElementById('contactForm');
+      const homeElement = document.getElementById('home');
+      
+      console.log('ScrollToHero called, contactForm found:', contactForm, 'home found:', homeElement);
+      
+      // Test scroll first
+      console.log('Current scroll position:', window.pageYOffset);
+      
+      if (contactForm) {
+        const headerHeight = 80;
+        const elementPosition = contactForm.offsetTop - headerHeight;
+        console.log('Scrolling to contact form position:', elementPosition);
+        
+        // Try scrollIntoView first
+        try {
+          contactForm.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        } catch {
+          console.log('scrollIntoView failed, using window.scrollTo');
+        }
+        
+        // Also try window.scrollTo as backup
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+        
+        // Fallback: force scroll if smooth scroll fails
+        setTimeout(() => {
+          if (window.pageYOffset < elementPosition - 100) {
+            console.log('Smooth scroll may have failed, forcing scroll');
+            window.scrollTo(0, elementPosition);
+          }
+        }, 1000);
+        
+      } else if (homeElement) {
+        const headerHeight = 80;
+        const elementPosition = homeElement.offsetTop - headerHeight;
+        console.log('Scrolling to home position:', elementPosition);
+        
+        // Try scrollIntoView first
+        try {
+          homeElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        } catch {
+          console.log('scrollIntoView failed, using window.scrollTo');
+        }
+        
+        // Also try window.scrollTo as backup
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+        
+        // Fallback: force scroll if smooth scroll fails
+        setTimeout(() => {
+          if (window.pageYOffset < elementPosition - 100) {
+            console.log('Smooth scroll may have failed, forcing scroll');
+            window.scrollTo(0, elementPosition);
+          }
+        }, 1000);
+        
+      } else {
+        // Fallback: scroll to top if element not found
+        console.log('No elements found, scrolling to top');
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+      
+      // Alternative approach: try scrolling by a fixed amount
+      setTimeout(() => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 100) {
+          console.log('Trying alternative scroll approach');
+          window.scrollBy({
+            top: -currentScroll + 100,
+            behavior: 'smooth'
+          });
+        }
+      }, 2000);
+      
+      // Log final scroll position
+      setTimeout(() => {
+        console.log('Final scroll position:', window.pageYOffset);
+      }, 500);
+      
+    }, 100);
   };
 
   const testimonials = [
@@ -61,8 +148,12 @@ const Testimonials = () => {
 
   useEffect(() => {
     const timer = setInterval(nextSlide, 5000);
-    return () => clearInterval(timer);
-  }, []);
+    
+    // Cleanup function
+    return () => {
+      clearInterval(timer);
+    };
+  }, [currentSlide]); // Add currentSlide as dependency to reset timer when manually changed
 
   return (
     <section className="py-20 bg-gray-50">
@@ -165,7 +256,22 @@ const Testimonials = () => {
               Join hundreds of satisfied clients who have achieved SEDEX SMETA certification with Eurocert.
             </p>
             <div className="flex justify-center">
-              <button onClick={scrollToHero} className="bg-[#2A2A86] text-white px-8 py-3 rounded-full hover:bg-[#2A2A86] transition-all duration-300 transform hover:scale-105 font-semibold flex items-center justify-center space-x-2">
+              <button 
+                onClick={(e) => {
+                  // Prevent event bubbling
+                  e.preventDefault();
+                  e.stopPropagation();
+                  
+                  console.log('Button clicked, pausing carousel and scrolling');
+                  
+                  // Pause auto-scroll temporarily
+                  setCurrentSlide(currentSlide);
+                  
+                  // Call scroll function
+                  scrollToHero();
+                }} 
+                className="bg-[#2A2A86] text-white px-8 py-3 rounded-full hover:bg-[#2A2A86] transition-all duration-300 transform hover:scale-105 font-semibold flex items-center justify-center space-x-2"
+              >
                 <span>Get Free Quote Now</span>
                 <ArrowRight className="w-5 h-5" />
               </button>

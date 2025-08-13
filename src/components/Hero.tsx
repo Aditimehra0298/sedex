@@ -29,7 +29,7 @@ const Hero = () => {
       // Create hidden form for Google Apps Script submission
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = 'https://script.google.com/macros/s/AKfycbyoX4DKwZTC5Xtt3LdhGvXITklHcw66_32JZTPEQX67zmLsjbX5d6m1ysq1mePi4Z9w/exec';
+      form.action = 'https://script.google.com/macros/s/AKfycbxdEp1_KXmaM7JHjap_IYuTwpYz8_t3n0FuodjBiwAFgBJnDcyE_KMppf8Q8WItNCFF/exec';
       form.target = 'hidden-iframe';
       form.style.display = 'none';
 
